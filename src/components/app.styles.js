@@ -174,10 +174,11 @@ export const CoinContainer = styled.div`
     transition: .2s all ease-in-out;
 
     &:hover{
-        background: rgba(190, 190, 190, .2);
+        background: #60c9ec;
         text-shadow: 1px 1px 10px rgba(0,0,0,.7);
         font-weight: bold;
         border-radius: 5px;
+        color: white;
         box-shadow: 1px 1px 12px rgba(0,0,0,.4);
     }
 `

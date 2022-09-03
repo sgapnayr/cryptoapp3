@@ -11,7 +11,7 @@ import COINHEADER from './components/COINHEADER';
 const LIST = ({ filteredCoinList, coins, symbol }) => {
   return (
     <CoinList>
-      {coins && filteredCoinList?.map(coin => {
+      {filteredCoinList?.map(coin => {
         return (
           <Link to={`/coin/${coin.id}`} key={coin.id}>
             <CoinContainer key={coin.id}>
