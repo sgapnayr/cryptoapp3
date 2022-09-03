@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { AppHeader, Border, BorderHeader, BordersAround, BorderLeft, SideBorders, BorderRight, Charts, CoinCharts, CoinTable, ListHeader, StyledForm, StyledInput, CoinHeader, CoinList, CoinContainer, CoinDiv } from './components/app.styles'
+import { AppHeader, Border, BorderHeader, BordersAround, BorderLeft, SideBorders, BorderRight, NavDiv, Charts, CoinCharts, CoinTable, ListHeader, StyledForm, StyledInput, CoinHeader, CoinList, CoinContainer, CoinDiv } from './components/app.styles'
 import { Routes, Route, Link } from 'react-router-dom';
 import Coin from './routes/Coin'
 import ShowChart from './charts/Chart'
 import APPTITLE from './components/APPTITLE';
 import LISTHEADER from './components/LISTHEADER';
 import COINHEADER from './components/COINHEADER';
+import Toggle from './components/toggle/index'
 
-const LIST = ({ filteredCoinList, coins, symbol }) => {
+const LIST = ({ filteredCoinList, coins, symbol, coinId }) => {
   return (
     <CoinList>
       {filteredCoinList?.map(coin => {
         return (
-          <Link to={`/coin/${coin.id}`} key={coin.id}>
+          <Link to={`/coin/${coin.id}`} coinId={coin.id} key={coin.id}>
             <CoinContainer key={coin.id}>
               <CoinDiv>
                 {coins.indexOf(coin) + 1}
@@ -53,10 +54,17 @@ function App() {
   const [currency, setCurrency] = useState("usd");
   const [symbol, setSymbol] = useState("$");
   const [coinClicked, setCoinClicked] = useState('')
+  const [toggled, setToggled] = useState(false)
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=250&page=1&sparkline=false`
 
-  axios.get(url).then(res => setCoins(res.data)).catch(err => console.log(err))
+  async function GetData() {
+    await axios.get(url).then(res => setCoins(res.data)).catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    GetData()
+  }, [])
 
   const handleChange = (e) => {
     setSearch(e.target.value)
@@ -119,11 +127,16 @@ function App() {
     setCoinClicked(data)
   }
 
+  const handleToggle = () => {
+    setToggled(!toggled)
+    console.log(toggled)
+  }
+
   const pathname = window.location.pathname
 
   return (
 
-    <div className="App">
+    <div className={toggled ? 'App' : 'App dark'}>
       <Border>
         <BorderHeader>
           <AppHeader>
@@ -132,6 +145,9 @@ function App() {
         </BorderHeader>
       </Border>
       <BordersAround>
+        <NavDiv>
+          <Toggle onClicked={handleToggle} toggled={toggled} />
+        </NavDiv>
         <CoinCharts>
           <Charts>
             <ShowChart coinClicked={coinClicked} />

@@ -121,6 +121,15 @@ export const Charts = styled.div`
     align-items: center;
 `
 
+/* NAV */
+export const NavDiv = styled.div` 
+    width: 100%;
+    display: flex;
+    transform: scale(.75);
+    justify-content: space-between;
+    margin: 2rem 0 -1rem 0;
+`
+
 /* COIN TABLE */
 export const CoinTable = styled.div`
     border-radius: 5px;

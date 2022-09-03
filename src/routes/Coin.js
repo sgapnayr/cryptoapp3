@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Coin = (props) => {
+const Coin = (props, { coinId }) => {
     const [coin, setCoin] = useState({});
     const [content, setContent] = useState(true)
     const [coinClicked, setCoinClicked] = useState('')

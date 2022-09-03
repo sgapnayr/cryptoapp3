@@ -1,0 +1,149 @@
+.toggle {
+    height: 3rem;
+    width: 7rem;
+    background-image: linear-gradient(rgb(174, 236, 255), #60c9ec);
+    border-radius: 30px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+}
+
+.toggle:hover {
+    transform: scale(1.01);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, .4);
+}
+
+.toggle.night {
+    background-image: linear-gradient(rgb(140, 77, 167), rgb(191, 43, 255));
+    justify-content: end;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toggle.night:hover {
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.9);
+}
+
+.notch {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 251, 255));
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px rgba(255, 255, 21, .2);
+    position: absolute;
+    left: .3rem;
+    z-index: 1;
+    transition: .2s all ease-in-out;
+}
+
+.night>.notch {
+    background-image: linear-gradient(rgb(216, 216, 216), rgb(243, 243, 243));
+    transform: translate(3.8rem);
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, .7);
+}
+
+.shape {
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    position: absolute;
+    transition: .2s all ease-in-out;
+}
+
+/* 
+.sm {
+    height: .25rem;
+    width: 1.5rem;
+    left: 50%;
+    top: 20%;
+}
+
+.smmd {
+    height: .25rem;
+    width: 2rem;
+    left: 60%;
+    top: 70%;
+}
+
+.md {
+    height: .35rem;
+    width: 2.5rem;
+    left: 25%;
+    top: 60%;
+    z-index: 2;
+}
+
+.lg {
+    height: .25rem;
+    width: 3rem;
+    left: 50%;
+    top: 40%;
+}
+
+.night .shape {
+    box-shadow: 1px 1px 10px violet;
+    background: rgb(255, 255, 255);
+}
+
+.night .sm {
+    height: .25rem;
+    width: .25rem;
+    left: 25%;
+    top: 20%;
+}
+
+.night .smmd {
+    height: .25rem;
+    width: .25rem;
+    left: 45%;
+    top: 70%;
+}
+
+.night .md {
+    height: .35rem;
+    width: .35rem;
+    left: 25%;
+    top: 60%;
+    z-index: 2;
+}
+
+.night .lg {
+    height: .4rem;
+    width: .4rem;
+    left: 40%;
+    top: 40%;
+} */
+
+.night .crater {
+    opacity: 0;
+}
+
+.crater {
+    opacity: 0;
+}
+
+.notch>.crater {
+    background: rgba(222, 184, 135, 0.593);
+    border-radius: 50%;
+    width: 1rem;
+    height: .5rem;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .4) inset;
+}
+
+.crater:first-child {
+    left: 10%;
+    top: 15%;
+    rotate: -45deg;
+}
+
+.crater:last-child {
+    width: .75rem;
+    right: 10%;
+    top: 20%;
+    rotate: 45deg;
+}
