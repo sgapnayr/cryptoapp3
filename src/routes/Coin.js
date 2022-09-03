@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Coin = (props) => {
+const Coin = (props, { handleOpen }) => {
     const [coin, setCoin] = useState({});
     const [content, setContent] = useState(true)
     const [coinClicked, setCoinClicked] = useState('')
@@ -11,7 +11,7 @@ const Coin = (props) => {
 
     const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`;
 
-    async function getData() {
+    async function GetData() {
         await axios
             .get(url)
             .then((res) => setCoin(res.data))
@@ -19,7 +19,8 @@ const Coin = (props) => {
     }
 
     useEffect(() => {
-        getData()
+        GetData()
+        props.handleClick(params.coinId)
     }, [])
 
     const showContent = () => {
@@ -33,7 +34,7 @@ const Coin = (props) => {
 
     return <>
         <div className="CoinAll">
-            <Link to='/'>
+            <Link to='/' >
                 <div className="Link">
                     Go Back
                 </div>

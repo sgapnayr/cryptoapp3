@@ -22,7 +22,6 @@ export const CoinCharts = styled.div`
     background: white;
     transition: .2s all ease-in-out;
     &:hover {
-        ${'' /* transform: scale(1.01); */}
         box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
     }
 `
@@ -103,7 +102,7 @@ export const BorderFooter = styled.div`
   flex-direction: column;
   height: 3rem;
   width: 40%;
-  background: var(--border-color);
+  background-color: linear-gradient(blue, red);
   transform: translate(0%, -100%);
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
   box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.3);
