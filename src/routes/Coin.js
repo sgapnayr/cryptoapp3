@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Coin = ({ image }) => {
+const Coin = (props) => {
     const [coin, setCoin] = useState({});
     const [content, setContent] = useState(true)
+    const [coinClicked, setCoinClicked] = useState('')
     const params = useParams();
 
     const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`;
@@ -18,11 +19,17 @@ const Coin = ({ image }) => {
     }
 
     useEffect(() => {
-        getData()
+        getData(),
+            handleCoinClicked()
     }, [])
 
     const showContent = () => {
         setContent(!content)
+    }
+
+    const handleCoinClicked = () => {
+        setCoinClicked(params.coinId)
+        props.chartData(params.coinId)
     }
 
     return <>

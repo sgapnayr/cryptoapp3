@@ -3,7 +3,7 @@ import axios from 'axios'
 import { AppHeader, Border, BorderHeader, BordersAround, BorderLeft, SideBorders, BorderRight, Charts, CoinCharts, CoinTable, ListHeader, StyledForm, StyledInput, CoinHeader, CoinList, CoinContainer, CoinDiv } from './components/app.styles'
 import { Routes, Route, Link } from 'react-router-dom';
 import Coin from './routes/Coin'
-import BarChart from './charts/Chart'
+import ShowChart from './charts/Chart'
 import APPTITLE from './components/APPTITLE';
 import LISTHEADER from './components/LISTHEADER';
 import COINHEADER from './components/COINHEADER';
@@ -13,7 +13,7 @@ const LIST = ({ filteredCoinList, coins, symbol }) => {
     <CoinList>
       {coins && filteredCoinList?.map(coin => {
         return (
-          <Link to={`/coin/${coin.id}`} element={<Coin />} key={coin.id}>
+          <Link to={`/coin/${coin.id}`} key={coin.id}>
             <CoinContainer key={coin.id}>
               <CoinDiv>
                 {coins.indexOf(coin) + 1}
@@ -38,11 +38,6 @@ const LIST = ({ filteredCoinList, coins, symbol }) => {
                   {coin.price_change_percentage_24h?.toFixed(2)} %
                 </div>
               </CoinDiv>
-              <CoinDiv>
-                <div className={coin.price_change_percentage_24h > 0 ? 'green' : 'red'} >
-                  {coin.price_change_percentage_24h?.toFixed(2)} %
-                </div>
-              </CoinDiv>
             </CoinContainer>
           </Link>
         )
@@ -57,11 +52,11 @@ function App() {
   const [isSorted, setSort] = useState(null)
   const [currency, setCurrency] = useState("usd");
   const [symbol, setSymbol] = useState("$");
+  const [coinClicked, setCoinClicked] = useState('')
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=250&page=1&sparkline=false`
 
   axios.get(url).then(res => setCoins(res.data)).catch(err => console.log(err))
-  console.log(url)
 
   const handleChange = (e) => {
     setSearch(e.target.value)
@@ -120,6 +115,10 @@ function App() {
     }
   };
 
+  const handleCoinClicked = (data) => {
+    setCoinClicked(data)
+  }
+
   const pathname = window.location.pathname
 
   return (
@@ -135,7 +134,7 @@ function App() {
       <BordersAround>
         <CoinCharts>
           <Charts>
-            <BarChart />
+            <ShowChart coinClicked={coinClicked} />
           </Charts>
         </CoinCharts>
         <SideBorders>
@@ -163,9 +162,7 @@ function App() {
               : ''}
             <Routes>
               <Route path='/' element={<LIST filteredCoinList={renderList()} coins={coins} symbol={symbol} />} />
-              <Route path='/coin' element={<Coin />}>
-                <Route path=':coinId' element={<Coin />} />
-              </Route>
+              <Route path='/coin/:coinId' element={<Coin chartData={handleCoinClicked} />} />
             </Routes>
           </CoinTable>
           <BorderRight />

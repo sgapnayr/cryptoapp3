@@ -9,7 +9,6 @@ const COINHEADER = ({ handleSort, isSorted }) => {
             <div className='grid'>Name</div>
             <div className='grid'>Symbol</div>
             <div className='grid price' onClick={handleSort}>Price {isSorted ? "↓" : !isSorted && isSorted !== false ? "↕" : "↑"}</div>
-            <div className='grid'>1h</div>
             <div className='grid'>24h</div>
         </CoinHeader>
     )

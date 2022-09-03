@@ -148,12 +148,11 @@ export const ListHeader = styled.div`
 `
 
 export const CoinHeader = styled.div`
-    font-size: small;
     display: grid;
     justify-content: center;
     align-items: center;
     width: 90%;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     font-weight: bold;
     margin: .5vh 0 .5vh 0;
 `
@@ -165,12 +164,12 @@ export const CoinList = styled.div`
 
 export const CoinContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     transition: .2s all ease-in-out;
     cursor: pointer;
-    border-bottom: 1px solid rgba(0,0,0,.2);
+    border-bottom: 1px solid rgba(0,0,0,.1);
     box-shadow: 1px 1px 10px rgba(0,0,0,.1);
     transition: .2s all ease-in-out;
 
@@ -184,6 +183,7 @@ export const CoinContainer = styled.div`
 `
 
 export const CoinDiv = styled.div` 
+    margin: .5rem 0;
     text-align: center;
     width: 100%;
     display: flex;
