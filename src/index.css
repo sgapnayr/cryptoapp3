@@ -63,6 +63,10 @@ strong {
   text-shadow: 1px 1px 12px rgba(0, 0, 0, .3);
 }
 
+.dark strong {
+  color: rgb(191, 43, 255);
+}
+
 bold {
   color: var(--accent-color);
   font-weight: bold;

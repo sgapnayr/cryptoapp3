@@ -125,9 +125,9 @@ export const Charts = styled.div`
 export const NavDiv = styled.div` 
     width: 100%;
     display: flex;
-    transform: scale(.75);
+    transform: scale(.5);
     justify-content: space-between;
-    margin: 2rem 0 -1rem 0;
+    margin: 1rem 0 -2rem 0;
 `
 
 /* COIN TABLE */
@@ -183,7 +183,7 @@ export const CoinContainer = styled.div`
     transition: .2s all ease-in-out;
 
     &:hover{
-        background: #60c9ec;
+        background: ${props => props.dark};
         text-shadow: 1px 1px 10px rgba(0,0,0,.7);
         font-weight: bold;
         border-radius: 5px;

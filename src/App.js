@@ -9,13 +9,13 @@ import LISTHEADER from './components/LISTHEADER';
 import COINHEADER from './components/COINHEADER';
 import Toggle from './components/toggle/index'
 
-const LIST = ({ filteredCoinList, coins, symbol, coinId }) => {
+const LIST = ({ filteredCoinList, coins, symbol, coinId, toggled }) => {
   return (
     <CoinList>
       {filteredCoinList?.map(coin => {
         return (
           <Link to={`/coin/${coin.id}`} coinId={coin.id} key={coin.id}>
-            <CoinContainer key={coin.id}>
+            <CoinContainer key={coin.id} dark={toggled ? '#60c9ec' : '#bf2bff'}>
               <CoinDiv>
                 {coins.indexOf(coin) + 1}
               </CoinDiv>
@@ -177,7 +177,7 @@ function App() {
               <COINHEADER handleSort={handleSort} isSorted={isSorted} />
               : ''}
             <Routes>
-              <Route path='/' element={<LIST filteredCoinList={renderList()} coins={coins} symbol={symbol} />} />
+              <Route path='/' element={<LIST filteredCoinList={renderList()} coins={coins} symbol={symbol} toggled={toggled} />} />
               <Route path='/coin/:coinId' element={<Coin chartData={handleCoinClicked} />} />
             </Routes>
           </CoinTable>
