@@ -127,7 +127,7 @@ export const NavDiv = styled.div`
     display: flex;
     transform: scale(.5);
     justify-content: space-between;
-    margin: 1rem 0 -2rem 0;
+    margin: 0rem 0 -2rem 0;
 `
 
 /* COIN TABLE */

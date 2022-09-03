@@ -95,6 +95,10 @@ a {
   color: var(--accent-color);
 }
 
+.dark .price:hover {
+  color: rgb(191, 43, 255)
+}
+
 /* Currency Selector */
 select {
   font-size: small;
@@ -123,6 +127,14 @@ select:hover {
 }
 
 .Link:hover {
+  color: rgba(190, 190, 190, .2);
+}
+
+.dark .Link {
+  color: rgb(191, 43, 255)
+}
+
+.dark .Link:hover {
   color: rgba(190, 190, 190, .2);
 }
 

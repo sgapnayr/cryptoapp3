@@ -51,25 +51,26 @@
     border-radius: 50%;
     position: absolute;
     transition: .2s all ease-in-out;
+    opacity: .75;
 }
 
-/* 
+
 .sm {
-    height: .25rem;
+    height: .2rem;
     width: 1.5rem;
     left: 50%;
     top: 20%;
 }
 
 .smmd {
-    height: .25rem;
+    height: .2rem;
     width: 2rem;
     left: 60%;
     top: 70%;
 }
 
 .md {
-    height: .35rem;
+    height: .3rem;
     width: 2.5rem;
     left: 25%;
     top: 60%;
@@ -77,7 +78,7 @@
 }
 
 .lg {
-    height: .25rem;
+    height: .2rem;
     width: 3rem;
     left: 50%;
     top: 40%;
@@ -115,7 +116,7 @@
     width: .4rem;
     left: 40%;
     top: 40%;
-} */
+}
 
 .night .crater {
     opacity: 0;

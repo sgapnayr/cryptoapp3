@@ -3,25 +3,19 @@ import { Charts } from '../components/app.styles'
 import { Chart as Chartjs } from 'chart.js/auto'
 import { Line, Bar, getDatasetAtEvent } from 'react-chartjs-2'
 import axios from 'axios'
+import { parsePath } from 'react-router-dom'
 
-function ShowChart(props) {
+export default function ShowChart(props) {
     const [apiData, setApiData] = useState([])
     const url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1`
     console.log(url)
 
     async function GetData() {
-        const { data } = await axios.get(url)
-        setApiData(data)
+        await axios.get(url).then(res => setApiData(res.data)).catch(err => console.log(err))
     }
 
-    useEffect(() => {
-        GetData()
-    }, [])
-
     const priceData = apiData?.prices?.map(el => el[1])
-    // const marketCapData = apiData?.market_caps?.map(el => el[1])
     const volumeLabels = apiData?.total_volumes?.map(el => new Date(el[0]).getDate().toString()).map(el => el.length === 1 ? `0${el}` : el)
-    // const marketCapLabels = apiData?.market_caps?.map(el => new Date(el[0]).getDate().toString()).map(el => el.length === 1 ? `0${el}` : el)
 
     const data = {
         labels: volumeLabels?.slice(0, 500),
@@ -85,4 +79,3 @@ function ShowChart(props) {
     )
 }
 
-export default ShowChart

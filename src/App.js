@@ -9,7 +9,7 @@ import LISTHEADER from './components/LISTHEADER';
 import COINHEADER from './components/COINHEADER';
 import Toggle from './components/toggle/index'
 
-const LIST = ({ filteredCoinList, coins, symbol, coinId, toggled }) => {
+const LIST = ({ filteredCoinList, symbol, coinId, toggled }) => {
   return (
     <CoinList>
       {filteredCoinList?.map(coin => {
@@ -17,7 +17,7 @@ const LIST = ({ filteredCoinList, coins, symbol, coinId, toggled }) => {
           <Link to={`/coin/${coin.id}`} coinId={coin.id} key={coin.id}>
             <CoinContainer key={coin.id} dark={toggled ? '#60c9ec' : '#bf2bff'}>
               <CoinDiv>
-                {coins.indexOf(coin) + 1}
+                {coin.market_cap_rank}
               </CoinDiv>
               <CoinDiv>
                 <img src={coin.image} alt="Crypto" />
@@ -54,7 +54,7 @@ function App() {
   const [currency, setCurrency] = useState("usd");
   const [symbol, setSymbol] = useState("$");
   const [coinClicked, setCoinClicked] = useState('')
-  const [toggled, setToggled] = useState(false)
+  const [toggled, setToggled] = useState(true)
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=250&page=1&sparkline=false`
 
@@ -111,21 +111,7 @@ function App() {
     }
   };
 
-  const filteredCoinList = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()))
-
-  const renderList = () => {
-    if (isSorted === true) {
-      return filteredCoinList.sort((a, b) => a.current_price - b.current_price);
-    } else if (isSorted === false) {
-      return filteredCoinList.sort((b, a) => a.current_price - b.current_price);
-    } else {
-      return filteredCoinList.sort();
-    }
-  };
-
-  const handleCoinClicked = (data) => {
-    setCoinClicked(data)
-  }
+  const filteredCoinList = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase())).sort(isSorted ? (a, b) => a.current_price - b.current_price : (b, a) => a.current_price - b.current_price)
 
   const handleToggle = () => {
     setToggled(!toggled)
@@ -150,7 +136,7 @@ function App() {
         </NavDiv>
         <CoinCharts>
           <Charts>
-            <ShowChart coinClicked={coinClicked} />
+            <ShowChart />
           </Charts>
         </CoinCharts>
         <SideBorders>
@@ -177,8 +163,8 @@ function App() {
               <COINHEADER handleSort={handleSort} isSorted={isSorted} />
               : ''}
             <Routes>
-              <Route path='/' element={<LIST filteredCoinList={renderList()} coins={coins} symbol={symbol} toggled={toggled} />} />
-              <Route path='/coin/:coinId' element={<Coin chartData={handleCoinClicked} />} />
+              <Route path='/' element={<LIST filteredCoinList={filteredCoinList} symbol={symbol} toggled={toggled} GetData={GetData()} />} />
+              <Route path='/coin/:coinId' element={<Coin />} />
             </Routes>
           </CoinTable>
           <BorderRight />
