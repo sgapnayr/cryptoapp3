@@ -96,7 +96,7 @@ export const BorderRight = styled.div`
 `
 
 export const BorderFooter = styled.div`
-  display: flex;
+  display: flex; 
   justify-content: center;
   align-items: center;
   flex-direction: column;
